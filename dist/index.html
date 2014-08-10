@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ggForm</title>      
+<!--CSS-->
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+<link href="css/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+<!--JS-->   
+<script type="text/javascript" src="js/angular/angular.min.js"></script>
+<script type="text/javascript" src="js/angular-bootstrap/ui-bootstrap.min.js"></script>
+<script type="text/javascript" src="js/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script type="text/javascript" src="../src/ng-fieldBuilder.js"></script>
+
+<script type="text/javascript">
+angular.element(document).ready(function () {
+        
+    angular.module('app',['ggForm'])
+    
+        .config(function($logProvider){
+            $logProvider.debugEnabled(true);
+        })
+    
+        .controller('appCtrl',function($scope){
+           $scope.val = 'value2';
+           $scope.val2 = 'value2';
+           $scope.options = [
+               {"label":"label1","value":"value1"},
+               {"label":"label2","value":"value2"},
+           ]
+        });
+
+    angular.bootstrap(document,['app']);
+});
+</script>
+</head>
+
+<body ng-controller="appCtrl">
+    {{fmData|json}}
+    <form class="form-horizontal" role="form">
+        <gg-input label="Input" width-label="col-lg-1" width-field="col-lg-2" name="fmData.input" type="password" ng-init="fmData.input=val2" ng-model="fmData.input"></gg-input>
+        <gg-select label="Select" width-label="col-lg-1" width-field="col-lg-2" name="fmData.select" options="options" ng-init="fmData.select=val" ng-model="fmData.select"></gg-select>
+    </form>
+</body>
+
+</html>

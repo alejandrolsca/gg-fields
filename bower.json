@@ -1,0 +1,33 @@
+{
+  "name": "ng-fieldBuilder",
+  "main": "src/ng-fieldBuilder.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/alejandrolsca/ng-fieldBuilder",
+  "authors": [
+    "Alejandro Sanchez Betancourt <alejandrolsca@gmail.com>"
+  ],
+  "description": "field builder for AngularJS",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "field",
+    "angular",
+    "directive",
+    "builder"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.21",
+    "angular-bootstrap": "~0.11.0",
+    "bootstrap": "~3.2.0"
+  }
+}

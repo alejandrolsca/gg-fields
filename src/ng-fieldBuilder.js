@@ -41,7 +41,7 @@
                         ctrl.$formatters.unshift(validate);
                 
                         function validate(viewValue){
-                
+                            console.log(ctrl.$pristine)
                             var required = ((attrs.req==="true") && !!!viewValue);
                             var invalid = (angular.isDefined(viewValue) && !validTypes[attrs.valid].test(viewValue));
                             
@@ -50,6 +50,8 @@
                             
                             ctrl.$setValidity('valid', ((required || invalid) ? false : true))
                             
+                            ctrl.$render();
+                
                             return viewValue;
                         }
                     }

@@ -22,25 +22,40 @@ angular.element(document).ready(function () {
             $logProvider.debugEnabled(true);
         })
     
-        .controller('appCtrl',function($scope){
-           $scope.val = 'value2';
-           $scope.val2 = 'value2';
+        .controller('appCtrl',function($scope,$interval){
            $scope.options = [
                {"label":"label1","value":"value1"},
                {"label":"label2","value":"value2"},
-           ]
+           ];
+           $interval(function(){
+               $scope.fmData = {"input":"inputval","select":"value2"};
+           },100,1)
+           
         });
 
     angular.bootstrap(document,['app']);
 });
 </script>
 </head>
-
+  
 <body ng-controller="appCtrl">
     {{fmData|json}}
-    <form class="form-horizontal" role="form">
-        <gg-input label="Input" width-label="col-lg-1" width-field="col-lg-2" name="fmData.input" type="password" ng-init="fmData.input=val2" ng-model="fmData.input"></gg-input>
-        <gg-select label="Select" width-label="col-lg-1" width-field="col-lg-2" name="fmData.select" options="options" ng-init="fmData.select=val" ng-model="fmData.select"></gg-select>
+    <form name="ggform" class="form-horizontal" role="form">
+        <gg-input 
+                  label="Input" 
+                  width-label="col-lg-1" 
+                  width-field="col-lg-2" 
+                  name="fmData.input" type="text"
+                  ng-model="fmData.input"
+                  valid="decimal2"
+                  req="true">
+        </gg-input>
+        <gg-select label="Select" width-label="col-lg-1" width-field="col-lg-2" name="fmData.select" options="options" ng-model="fmData.select"></gg-select>
+        <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-default" ng-disabled="ggform.$invalid">Submit</button>
+        </div>
+      </div>
     </form>
 </body>
 

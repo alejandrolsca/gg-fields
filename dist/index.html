@@ -6,6 +6,7 @@
 <!--CSS-->
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
 <link href="css/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/index.css" rel="stylesheet" type="text/css" />
 
 <!--JS-->   
 <script type="text/javascript" src="js/angular/angular.min.js"></script>
@@ -27,9 +28,9 @@ angular.element(document).ready(function () {
                {"label":"label1","value":"value1"},
                {"label":"label2","value":"value2"},
            ];
-           /*$interval(function(){
+           $interval(function(){
                $scope.fmData = {"input":"inputval","select":"value2"};
-           },100,1)*/
+           },100,1)
            
         });
 
@@ -41,16 +42,28 @@ angular.element(document).ready(function () {
 <body ng-controller="appCtrl">
     <pre>{{fmData|json}}</pre>
     <form name="ggform" class="form-horizontal" role="form">
-        <gg-input 
-                  label="Input" 
-                  width-label="col-lg-1" 
-                  width-field="col-lg-2" 
-                  name="fmData.input" type="text"
+        <gg-input fld-type="text"
                   ng-model="fmData.input"
-                  valid="decimal2"
-                  req="true">
+                  lbl="Input" 
+                  lbl-class="col-lg-1" 
+                  fld-class="col-lg-2"
+                  err-class="error"
+                  regexp="decimal2"
+                  regexp-msg="2 decimals or integer"
+                  req="true"
+                  req-msg="Required">
         </gg-input>
-        <gg-select label="Select" width-label="col-lg-1" width-field="col-lg-2" name="fmData.select" options="options" ng-model="fmData.select"></gg-select>
+        <gg-select options="options" 
+                   ng-model="fmData.select"
+                   lbl="Select" 
+                   lbl-class="col-lg-1" 
+                   fld-class="col-lg-2"
+                   err-class="error"
+                   regexp="singleSpaces"
+                   regexp-msg="no double spaces and special characters"
+                   req="true"
+                   req-msg="Required">
+        </gg-select>
         <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <button type="submit" class="btn btn-default" ng-disabled="ggform.$invalid">Submit</button>

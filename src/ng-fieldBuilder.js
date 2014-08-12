@@ -20,20 +20,21 @@
                     restrict: "E",
                     require: '^ngModel',
                     scope: {
-                        widthLabel: '@',
-                        widthField: '@',
-                        label: '@',
-                        type: '@',
-                        val: '=',
+                        lbl: '@',
+                        lblClass: '@',
+                        fldClass: '@',
+                        errClass: '@',
+                        fldType: '@',
+                        reqMsg: '@',
+                        regexpMsg: '@',
                         ngModel: '='
                     },
-                    template: '\
-                                <div class="form-group">\
-                                    <label for="{{name}}" class="{{widthLabel}} control-label">{{label}}</label>\
-                                    <div class="{{widthField}}">\
-                                        <input class="form-control" type="{{type}}" value="val" ng-model="ngModel" />\
-                                        <p ng-show="required">Required</p> \
-                                        <p ng-show="invalid">Invalid Value</p> \
+                    template: '<div class="form-group" ng-class="{\'has-error\': (required || invalid)}">\
+                                    <label for="{{fld}}" class="{{lblClass}} control-label">{{lbl}}</label>\
+                                    <div class="{{fldClass}}">\
+                                        <input class="form-control" type="{{fldType}}" ng-model="ngModel" />\
+                                        <p ng-class="errClass" ng-show="required">{{reqMsg}}</p> \
+                                        <p ng-class="errClass" ng-show="invalid">{{regexpMsg}}</p> \
                                     </div>\
                                 </div>',
                     link: function(scope, elem, attrs, ctrl){
@@ -43,7 +44,7 @@
                         function validate(viewValue){
                             console.log(ctrl.$pristine)
                             var required = ((attrs.req==="true") && !!!viewValue);
-                            var invalid = (angular.isDefined(viewValue) && !validTypes[attrs.valid].test(viewValue));
+                            var invalid = (angular.isDefined(viewValue) && !validTypes[attrs.regexp].test(viewValue));
                             
                             scope.required = required;
                             scope.invalid = invalid;
@@ -61,22 +62,45 @@
         .directive('ggSelect',function(validTypes){
             return {
                     restrict: "E",
+                    require: '^ngModel',
                     scope: {
-                        widthLabel: '@',
-                        widthField: '@',
-                        label: '@',
-                        name: '@',
+                        lbl: '@',
+                        lblClass: '@',
+                        fldClass: '@',
+                        errClass: '@',
+                        reqMsg: '@',
+                        regexpMsg: '@',
                         options: '=',
                         ngModel: '='
                     },
-                    template: '\
-                                <div class="form-group">\
-                                    <label for="name" class="{{widthLabel}} control-label">{{label}}</label>\
-                                    <div class="{{widthField}}">\
-                                        <select class="form-control" id="{{name}}" name="{{name}}" ng-model="ngModel" ng-options="item.value as item.label for item in options">\
+                    template: '<div class="form-group" ng-class="{\'has-error\': (required || invalid)}">\
+                                    <label class="{{lblClass}} control-label">{{lbl}}</label>\
+                                    <div class="{{fldClass}}">\
+                                        <select class="form-control" ng-model="ngModel" ng-options="item.value as item.label for item in options">\
                                         </select>\
+                                        <p ng-class="errClass" ng-show="required">{{reqMsg}}</p> \
+                                        <p ng-class="errClass" ng-show="invalid">{{regexpMsg}}</p> \
                                     </div>\
-                                </div>'
+                                </div>',
+                    link: function(scope, elem, attrs, ctrl){
+                        ctrl.$parsers.unshift(validate);
+                        ctrl.$formatters.unshift(validate);
+                
+                        function validate(viewValue){
+                            console.log(ctrl.$pristine)
+                            var required = ((attrs.req==="true") && !!!viewValue);
+                            var invalid = (angular.isDefined(viewValue) && !validTypes[attrs.regexp].test(viewValue));
+                            
+                            scope.required = required;
+                            scope.invalid = invalid;
+                            
+                            ctrl.$setValidity('valid', ((required || invalid) ? false : true))
+                            
+                            ctrl.$render();
+                
+                            return viewValue;
+                        }
+                    }
             };
         })
 

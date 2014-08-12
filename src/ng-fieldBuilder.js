@@ -27,12 +27,13 @@
                         fldType: '@',
                         reqMsg: '@',
                         regexpMsg: '@',
+                        ngDisabled: '=',
                         ngModel: '='
                     },
                     template: '<div class="form-group" ng-class="{\'has-error\': (required || invalid)}">\
                                     <label for="{{fld}}" class="{{lblClass}} control-label">{{lbl}}</label>\
                                     <div class="{{fldClass}}">\
-                                        <input class="form-control" type="{{fldType}}" ng-model="ngModel" />\
+                                        <input class="form-control" type="{{fldType}}" ng-model="ngModel" ng-disabled="ngDisabled"/>\
                                         <p ng-class="errClass" ng-show="required">{{reqMsg}}</p> \
                                         <p ng-class="errClass" ng-show="invalid">{{regexpMsg}}</p> \
                                     </div>\
@@ -70,13 +71,14 @@
                         errClass: '@',
                         reqMsg: '@',
                         regexpMsg: '@',
+                        ngDisabled: '=',
                         options: '=',
                         ngModel: '='
                     },
                     template: '<div class="form-group" ng-class="{\'has-error\': (required || invalid)}">\
                                     <label class="{{lblClass}} control-label">{{lbl}}</label>\
                                     <div class="{{fldClass}}">\
-                                        <select class="form-control" ng-model="ngModel" ng-options="item.value as item.label for item in options">\
+                                        <select class="form-control" ng-model="ngModel" ng-options="item.value as item.label for item in options" ng-disabled="ngDisabled">\
                                         </select>\
                                         <p ng-class="errClass" ng-show="required">{{reqMsg}}</p> \
                                         <p ng-class="errClass" ng-show="invalid">{{regexpMsg}}</p> \

@@ -44,6 +44,7 @@ angular.element(document).ready(function () {
     <form name="ggform" class="form-horizontal" role="form">
         <gg-input fld-type="text"
                   ng-model="fmData.input"
+                  ng-disabled="false"
                   lbl="Input" 
                   lbl-class="col-lg-1" 
                   fld-class="col-lg-2"
@@ -55,6 +56,7 @@ angular.element(document).ready(function () {
         </gg-input>
         <gg-select options="options" 
                    ng-model="fmData.select"
+                   ng-disabled="false"
                    lbl="Select" 
                    lbl-class="col-lg-1" 
                    fld-class="col-lg-2"

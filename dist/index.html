@@ -19,18 +19,23 @@ angular.element(document).ready(function () {
         
     angular.module('app',['ggForm'])
     
-        .config(function($logProvider){
-            $logProvider.debugEnabled(true);
-        })
-    
         .controller('appCtrl',function($scope,$interval){
            $scope.options = [
                {"label":"label1","value":"value1"},
                {"label":"label2","value":"value2"},
            ];
+            $scope.options2 = [
+               {"label":"label1","value":"value1"},
+               {"label":"label2","value":"value2"},
+           ];
            $interval(function(){
-               $scope.fmData = {"input":"inputval","select":"value2"};
-           },100,1)
+               $scope.fmData = {
+                   "input":"inputval",
+                   "input2":"inputval2",
+                   "select":"value1",
+                   "select2":"value2"
+               };
+           },1000,1)
            
         });
 
@@ -42,29 +47,48 @@ angular.element(document).ready(function () {
 <body ng-controller="appCtrl">
     <pre>{{fmData|json}}</pre>
     <form name="ggform" class="form-horizontal" role="form">
-        <gg-input fld-type="text"
-                  ng-model="fmData.input"
-                  ng-disabled="false"
+        <gg-input err-class="error"
                   lbl="Input" 
                   lbl-class="col-lg-1" 
                   fld-class="col-lg-2"
-                  err-class="error"
+                  ng-model="fmData.input"
                   regexp="decimal2"
                   regexp-msg="2 decimals or integer"
-                  req="true"
-                  req-msg="Required">
+                  req-msg="Required"
+                  required>
         </gg-input>
-        <gg-select options="options" 
-                   ng-model="fmData.select"
-                   ng-disabled="false"
+        <gg-input err-class="error"
+                  lbl="Input" 
+                  lbl-class="col-lg-1" 
+                  fld-class="col-lg-2"
+                  ng-model="fmData.input2"
+                  regexp="decimal2"
+                  regexp-msg="2 decimals or integer"
+                  req-msg="Required"
+                  required>
+        </gg-input>
+        <gg-select err-class="error"
                    lbl="Select" 
                    lbl-class="col-lg-1" 
                    fld-class="col-lg-2"
-                   err-class="error"
+                   options="options" 
+                   ng-model="fmData.select"
                    regexp="singleSpaces"
                    regexp-msg="no double spaces and special characters"
-                   req="true"
-                   req-msg="Required">
+                   req-msg="Required"
+                   required>
+        </gg-select>
+        <gg-select err-class="error"
+                   lbl="Select" 
+                   lbl-class="col-lg-1" 
+                   fld-class="col-lg-2"
+                   options="options2"
+                   ng-model="fmData.select2"
+                   regexp="decimal2"
+                   regexp-msg="2 decimals or integer"
+                   req-msg="Required"
+                   multiple
+                   required>
         </gg-select>
         <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">

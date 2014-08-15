@@ -1,6 +1,6 @@
 (function(angular){
     
-    angular.module('ggForm',[])
+    angular.module('gg-fields',[])
     
     .constant('validTypes',{
             "singleSpaces": /^[^ \t\s]?([-_a-zA-Z0-9ÁáÉéÍíÓóÚú\.](.[^ \t\s])*)*[^ \t\s]?$/,

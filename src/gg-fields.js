@@ -235,5 +235,26 @@
                     }
             };
         })
+    
+        .directive('ggSubmit',function(validTypes){
+        return {
+                restrict: "E",
+                require: '^ngModel',
+                scope: {
+                        fldClass: '@',
+                        lbl: '@',
+                        lblClass: '@',
+                        ngDisabled: '='
+                    },
+                    template: function(elem, attrs) {
+                        
+                        return '<div class="form-group">\
+                                    <div class="{{lblClass}} {{fldClass}}">\
+                                            <button type="submit" class="btn btn-default" ng-disabled="ngDisabled">{{lbl}}</button>\
+                                    </div>\
+                              </div>';
+                    }
+            };
+        })
 
 })(angular);

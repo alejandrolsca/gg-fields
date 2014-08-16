@@ -49,7 +49,7 @@ angular.element(document).ready(function () {
   
 <body ng-controller="appCtrl">
     <pre>{{fmData|json}}</pre>
-    <form name="ggform" class="form-horizontal" role="form">
+    <form name="ggform" class="form-horizontal" role="form" novalidate>
         <gg-input err-class="error"
                   lbl="Input" 
                   lbl-class="col-lg-1" 
@@ -87,8 +87,8 @@ angular.element(document).ready(function () {
                    fld-class="col-lg-2"
                    options="options2"
                    ng-model="fmData.select2"
-                   regexp="decimal2"
-                   regexp-msg="2 decimals or integer"
+                   regexp="singleSpaces"
+                   regexp-msg="no double spaces and special characters"
                    req-msg="Required"
                    multiple
                    required>
@@ -123,11 +123,11 @@ angular.element(document).ready(function () {
                   val="Red">
         </gg-radio>
         
-        <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-default" ng-disabled="ggform.$invalid">Submit</button>
-        </div>
-      </div>
+        <gg-submit lbl="Submit"
+                   lbl-class="col-lg-offset-1" 
+                   fld-class="col-lg-2"
+                   ng-disabled="ggform.$invalid">
+        </gg-submit>
     </form>
 </body>
 

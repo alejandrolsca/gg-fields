@@ -23,10 +23,10 @@ module.exports = function (grunt) {
         files: {
           '<%= config.dist %>/js/lib.min.js': [
             '<%= bower.directory %>/angular/angular.js',
-            '<%= config.app %>/ng-fieldBuilder.js'
+            '<%= config.app %>/gg-fields.js'
           ],
-            '<%= config.app %>/ng-fieldBuilder.min.js': [
-            '<%= config.app %>/ng-fieldBuilder.js'
+            '<%= config.app %>/gg-fields.min.js': [
+            '<%= config.app %>/gg-fields.js'
           ]
         }
       }
@@ -36,12 +36,12 @@ module.exports = function (grunt) {
        files: [{
          expand: true,
          cwd: '<%= config.app %>',
-         src: 'ng-fieldBuilder.js',
+         src: 'gg-fields.js',
          dest: '<%= config.dist %>/js'
        },{
          expand: true,
          cwd: '<%= config.app %>',
-         src: 'ng-fieldBuilder.min.js',
+         src: 'gg-fields.min.js',
          dest: '<%= config.dist %>/js'
        },{
          expand: true,

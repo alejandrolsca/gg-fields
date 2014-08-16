@@ -12,7 +12,7 @@
 <script type="text/javascript" src="js/angular/angular.min.js"></script>
 <script type="text/javascript" src="js/angular-bootstrap/ui-bootstrap.min.js"></script>
 <script type="text/javascript" src="js/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-<script type="text/javascript" src="../src/ng-fieldBuilder.js"></script>
+<script type="text/javascript" src="../src/gg-fields.js"></script>
 
 <script type="text/javascript">
 angular.element(document).ready(function () {
@@ -33,7 +33,10 @@ angular.element(document).ready(function () {
                    "input":"inputval",
                    "input2":"inputval2",
                    "select":"value1",
-                   "select2":"value2"
+                   "select2":"value2",
+                   "textarea":"This is just an example",
+                   "checkbox":false,
+                   "color":"Blue",
                };
            },1000,1)
            
@@ -90,6 +93,36 @@ angular.element(document).ready(function () {
                    multiple
                    required>
         </gg-select>
+        <gg-textarea err-class="error"
+                     lbl="Textarea" 
+                     lbl-class="col-lg-1" 
+                     fld-class="col-lg-2"
+                     options="options2"
+                     ng-model="fmData.textarea"
+                     regexp="decimal2"
+                     regexp-msg="2 decimals or integer"
+                     req-msg="Required"
+                     rows="8"
+                     required>
+        </gg-textarea>
+        <gg-checkbox lbl="Select"
+                     lbl-class="col-lg-offset-1" 
+                     fld-class="col-lg-2"
+                     ng-model="fmData.checkbox">
+        </gg-checkbox>
+        <gg-radio lbl="Blue"
+                  lbl-class="col-lg-offset-1" 
+                  fld-class="col-lg-2"
+                  ng-model="fmData.color"
+                  val="Blue">
+        </gg-radio>
+        <gg-radio lbl="Red"
+                  lbl-class="col-lg-offset-1" 
+                  fld-class="col-lg-2"
+                  ng-model="fmData.color"
+                  val="Red">
+        </gg-radio>
+        
         <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <button type="submit" class="btn btn-default" ng-disabled="ggform.$invalid">Submit</button>
